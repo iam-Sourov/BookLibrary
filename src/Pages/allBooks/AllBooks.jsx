@@ -25,7 +25,7 @@ const AllBooks = () => {
     b.author.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (isLoading) return <div className="flex h-[80vh] items-center justify-center"><Spinner size="large" /></div>;
+  if (isLoading) return <div className="flex h-[80vh] items-center justify-center"><Spinner className="size-8" /></div>;
   if (isError) return <div className="text-center py-20 text-destructive">Failed to load books.</div>;
 
   return (

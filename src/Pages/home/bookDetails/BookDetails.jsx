@@ -200,7 +200,7 @@ const BookDetails = () => {
     if (ratingCounts[star] !== undefined) ratingCounts[star]++;
   });
 
-  if (isBookLoading) return <div className="flex h-screen items-center justify-center"><Spinner size="large" /></div>;
+  if (isBookLoading) return <div className="flex h-screen items-center justify-center"><Spinner className="size-8" /></div>;
   if (!book) return <div className="text-center py-20 text-xl font-semibold">Book not found</div>;
 
   return (
@@ -335,7 +335,7 @@ const BookDetails = () => {
                         </div>
                         <Progress
                           value={percentage}
-                          className="h-2 flex-1 *:bg-amber-400 bg-muted/50"/>
+                          className="h-2 flex-1 *:bg-amber-400 bg-muted/50" />
                         <div className="w-8 text-right text-muted-foreground shrink-0">
                           {percentage.toFixed(0)}%
                         </div>
@@ -445,7 +445,7 @@ const BookDetails = () => {
                   placeholder="Tell us what you liked or disliked..."
                   value={reviewText}
                   onChange={(e) => setReviewText(e.target.value)}
-                  className="min-h-[120px]"/>
+                  className="min-h-[120px]" />
               </div>
             </div>
             <DialogFooter>

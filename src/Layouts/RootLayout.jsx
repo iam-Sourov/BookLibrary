@@ -11,7 +11,7 @@ const RootLayout = () => {
     if (loading) {
         return (
             <div className="flex min-h-screen w-full items-center justify-center bg-background">
-                <Spinner size="lg" className="text-primary"></Spinner>
+                <Spinner className="size-8 text-primary"></Spinner>
             </div>
         );
     }
