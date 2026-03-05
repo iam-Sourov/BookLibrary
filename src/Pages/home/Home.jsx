@@ -76,7 +76,7 @@ const Home = () => {
           <Slider />
         </div>
       </section>
-      <div className="border-y bg-muted/20">
+      <div className="border-y ">
         <Container>
           <div className="py-12">
             <Stats />
@@ -93,7 +93,7 @@ const Home = () => {
           <LatestBooks />
         </Container>
       </section>
-      <section className="bg-muted/30 py-16 md:py-24">
+      <section className=" py-16 md:py-24">
         <Container>
           <BookCourier />
         </Container>
