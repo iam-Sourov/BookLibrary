@@ -33,7 +33,7 @@ const Categories = () => {
   return (
     <section className="py-16 md:py-24">
       <div className="text-center mb-16 space-y-3">
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Explore by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Genre</span></h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Explore by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-indigo-400 dark:to-purple-400">Genre</span></h2>
         <p className="text-lg text-muted-foreground">Dive into your favorite worlds and discover new passions</p>
       </div>
 

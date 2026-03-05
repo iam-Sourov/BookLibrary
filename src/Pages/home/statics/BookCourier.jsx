@@ -43,7 +43,7 @@ const BookCourier = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              Why Readers <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Trust Us</span>
+              Why Readers <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Trust Us</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
               We don't just sell books; we deliver stories with care, speed, and affordability. Join our growing community of book lovers.
