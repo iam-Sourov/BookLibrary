@@ -17,32 +17,55 @@ const Home = () => {
       <section className="relative pt-24 pb-12 md:pt-40 md:pb-24 overflow-hidden">
         {/* Subtle Background Decoration */}
         <div className="absolute inset-0 max-w-full overflow-hidden pointer-events-none z-0">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] opacity-70"></div>
-          <div className="absolute top-40 -left-20 w-72 h-72 bg-accent/20 rounded-full blur-[80px] opacity-60"></div>
+          {/* Main glowing orb */}
+          <div className="absolute -top-[10%] left-[50%] -translate-x-[50%] w-[800px] h-[500px] bg-primary/20 rounded-[100%] blur-[120px] opacity-80 mix-blend-screen dark:mix-blend-color-dodge"></div>
+          {/* Secondary ambient orbs */}
+          <div className="absolute top-[20%] -right-[10%] w-[500px] h-[500px] bg-accent/20 rounded-full blur-[100px] opacity-60"></div>
+          <div className="absolute bottom-0 -left-[10%] w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[120px] opacity-60"></div>
+
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+            <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+          </div>
         </div>
 
-        <div className="container mx-auto px-4 text-center z-10 relative">
+        <div className="container mx-auto px-4 text-center z-10 relative pt-10">
 
-          <div className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:scale-105 mb-8 shadow-sm">
-            <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-            New Arrivals In Stock
+          {/* Animated Badge */}
+          <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary shadow-sm hover:bg-primary/10 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 mb-10 cursor-default animate-in fade-in slide-in-from-bottom-4">
+            <span className="relative flex h-2.5 w-2.5 mr-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+            </span>
+            New Arrivals In Stock Now
           </div>
 
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-7xl mb-6 animate-in fade-in slide-in-from-bottom-6 duration-700">
-            Your Next Great Read <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-indigo-400 dark:to-purple-400">Is Waiting For You.</span>
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-6xl lg:text-8xl font-extrabold tracking-tight mb-8 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150 fill-mode-both">
+            Your Next Great Read <br className="hidden md:block" />
+            <span className="relative inline-block mt-2">
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">
+                Is Waiting For You.
+              </span>
+              {/* Subtle underline highlight */}
+              <span className="absolute bottom-1 left-0 w-full h-3 bg-primary/20 -z-10 rounded-sm skew-x-12 hidden md:block"></span>
+            </span>
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground/90 mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            Discover a curated collection of thousands of books. From timeless classics
-            to modern bestsellers, manage your library in one beautifully designed place.
+          {/* Subtitle */}
+          <p className="mx-auto max-w-2xl text-lg md:text-2xl text-muted-foreground/90 mb-12 leading-relaxed font-medium animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both">
+            Discover a highly curated collection of rare books and modern bestsellers. Manage your journey in one beautifully tailored place.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-20 animate-in fade-in slide-in-from-bottom-10 duration-1000">
-            <Button size="lg" className="h-14 px-10 rounded-full text-base font-semibold shadow-lg hover:shadow-primary/25 transition-all hover:-translate-y-1" asChild>
-              <Link to="/all-books">Start Exploring</Link>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center gap-5 mb-24 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500 fill-mode-both">
+            <Button size="lg" className="h-14 px-10 rounded-full text-base font-bold shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 group" asChild>
+              <Link to="/all-books">
+                Start Exploring
+                <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="h-14 px-10 rounded-full text-base font-semibold bg-background/50 backdrop-blur-sm border-border hover:bg-muted transition-all hover:-translate-y-1" asChild>
+            <Button size="lg" variant="outline" className="h-14 px-10 rounded-full text-base font-bold bg-background/40 backdrop-blur-md border border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1" asChild>
               <Link to="/register">Join the Community</Link>
             </Button>
           </div>
