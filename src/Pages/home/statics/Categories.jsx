@@ -32,9 +32,9 @@ const itemVariants = {
 const Categories = () => {
   return (
     <section className="py-16 md:py-24">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold tracking-tight">Explore by Genre</h2>
-        <p className="text-muted-foreground mt-2">Dive into your favorite worlds</p>
+      <div className="text-center mb-16 space-y-3">
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Explore by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Genre</span></h2>
+        <p className="text-lg text-muted-foreground">Dive into your favorite worlds and discover new passions</p>
       </div>
 
       <motion.div
@@ -46,17 +46,18 @@ const Categories = () => {
       >
         {categories.map((cat, idx) => (
           <motion.div key={idx} variants={itemVariants}>
-            <Card className="cursor-pointer group hover:border-primary/50 transition-colors border-dashed">
-              <CardContent className="flex flex-col items-center justify-center p-6 gap-4">
-                <div className={`p-4 rounded-full ${cat.bg} group-hover:scale-110 transition-transform duration-300`}>
+            <Card className="cursor-pointer group relative overflow-hidden bg-background/40 backdrop-blur-sm border border-primary/10 hover:border-primary/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.05)] transition-all duration-500 rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <CardContent className="flex flex-col items-center justify-center p-8 gap-5 relative z-10">
+                <div className={`p-5 rounded-2xl ${cat.bg} group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg transition-all duration-300`}>
                   <cat.icon className={`h-8 w-8 ${cat.color}`} />
                 </div>
-                <div className="text-center">
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                <div className="text-center space-y-1">
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                     {cat.name}
                   </h3>
-                  <span className="text-xs text-muted-foreground flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity mt-1">
-                    Explore <ArrowRight className="h-3 w-3" />
+                  <span className="text-sm font-medium text-muted-foreground flex items-center justify-center gap-1.5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    Explore <ArrowRight className="h-4 w-4" />
                   </span>
                 </div>
               </CardContent>
