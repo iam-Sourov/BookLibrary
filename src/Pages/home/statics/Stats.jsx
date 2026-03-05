@@ -30,14 +30,19 @@ const Stats = () => {
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col items-center text-center px-4 py-4 md:py-0">
-              <div className="mb-4 p-3 rounded-full bg-background shadow-sm border text-primary">
-                <stat.icon className="w-6 h-6" strokeWidth={2} />
-              </div>
+              transition={{ duration: 0.5, delay: i * 0.1, type: "spring", stiffness: 300 }}
+              className="flex flex-col items-center text-center px-4 py-6 md:py-2 cursor-default group">
+              <motion.div
+                whileHover={{ rotate: 10, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="mb-4 p-4 rounded-2xl bg-background shadow-lg shadow-primary/5 border border-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-primary/20 transition-all duration-300"
+              >
+                <stat.icon className="w-7 h-7" strokeWidth={2} />
+              </motion.div>
               <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
                 {stat.value}
               </h3>

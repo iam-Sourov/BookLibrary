@@ -30,8 +30,8 @@ const containerVariants = {
   }
 };
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100, damping: 12 } }
 };
 
 const BookCourier = () => {
@@ -41,14 +41,20 @@ const BookCourier = () => {
         <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-indigo-500/20 blur-3xl" />
         <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-purple-500/20 blur-3xl" />
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-2xl mx-auto mb-16 space-y-4"
+          >
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
               Why Readers <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Trust Us</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
               We don't just sell books; we deliver stories with care, speed, and affordability. Join our growing community of book lovers.
             </p>
-          </div>
+          </motion.div>
           <motion.div
             variants={containerVariants}
             initial="hidden"

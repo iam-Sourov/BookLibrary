@@ -25,17 +25,23 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
+  hidden: { opacity: 0, scale: 0.9, y: 20 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 12 } }
 };
 
 const Categories = () => {
   return (
     <section className="py-16 md:py-24">
-      <div className="text-center mb-16 space-y-3">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-16 space-y-3"
+      >
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Explore by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-indigo-400 dark:to-purple-400">Genre</span></h2>
         <p className="text-lg text-muted-foreground">Dive into your favorite worlds and discover new passions</p>
-      </div>
+      </motion.div>
 
       <motion.div
         variants={containerVariants}
@@ -45,7 +51,12 @@ const Categories = () => {
         className="grid grid-cols-2 md:grid-cols-4 gap-6"
       >
         {categories.map((cat, idx) => (
-          <motion.div key={idx} variants={itemVariants}>
+          <motion.div
+            key={idx}
+            variants={itemVariants}
+            whileHover={{ y: -5, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <Card className="cursor-pointer group relative overflow-hidden bg-background/40 backdrop-blur-sm border border-primary/10 hover:border-primary/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.05)] transition-all duration-500 rounded-2xl">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <CardContent className="flex flex-col items-center justify-center p-8 gap-5 relative z-10">
