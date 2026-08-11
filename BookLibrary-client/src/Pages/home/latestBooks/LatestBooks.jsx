@@ -8,7 +8,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 import {
   Dialog,
   DialogContent,
+  DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
@@ -64,54 +66,71 @@ const LatestBooks = () => {
             <Link to="/all-books">View All Books</Link>
           </Button>
         </div>
+
         <Dialog open={!!selectedBook} onOpenChange={(open) => !open && setSelectedBook(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden gap-0 border-none sm:rounded-2xl">
+          <DialogContent className="max-w-4xl w-[94vw] sm:w-full p-0 overflow-hidden gap-0 border-none rounded-2xl">
             {selectedBook && (
-              <div className="grid md:grid-cols-5 h-full max-h-[90vh] md:max-h-[600px] overflow-y-auto md:overflow-hidden">
-                <div className="md:col-span-2 bg-muted relative h-64 md:h-full">
+              <div className="grid md:grid-cols-5 max-h-[85vh] overflow-y-auto md:overflow-hidden">
+                {/* Image */}
+                <div className="md:col-span-2 relative h-64 md:h-full bg-muted min-h-[260px]">
                   <img
                     src={selectedBook.image}
                     alt={selectedBook.title}
-                    className="absolute inset-0 w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent md:hidden" />
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent md:hidden" />
                 </div>
-                <div className="md:col-span-3 p-6 md:p-8 flex flex-col h-full bg-background">
-                  <div className="mb-6">
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline" className="text-muted-foreground">
+
+                {/* Content */}
+                <div className="md:col-span-3 flex flex-col p-6 md:p-8 bg-background min-w-0">
+                  <DialogHeader className="mb-4 space-y-0">
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <Badge variant="outline" className="text-muted-foreground shrink-0">
                         {selectedBook.category || "General"}
                       </Badge>
-                      <div className="flex items-center gap-1 text-amber-500">
+                      <div className="flex items-center gap-1 text-amber-500 shrink-0">
                         <Star className="h-4 w-4 fill-current" />
-                        <span className="text-sm font-semibold text-foreground">{selectedBook.rating}</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          {selectedBook.rating ?? "—"}
+                        </span>
                       </div>
                     </div>
-                    <DialogTitle className="text-2xl md:text-3xl font-bold leading-tight mb-1">
+
+                    <DialogTitle className="text-2xl md:text-3xl font-bold leading-tight text-left">
                       {selectedBook.title}
                     </DialogTitle>
-                    <p className="text-lg text-muted-foreground font-medium">
+                    <DialogDescription className="text-base md:text-lg text-muted-foreground font-medium text-left">
                       by {selectedBook.author}
-                    </p>
-                  </div>
-                  <div className="flex-1 overflow-y-auto pr-2 mb-6">
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  <div className="flex-1 overflow-y-auto pr-1 mb-6 max-h-32 md:max-h-none">
                     <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                       {selectedBook.description}
                     </p>
                   </div>
+
                   <Separator className="mb-6" />
-                  <div className="flex items-center justify-between gap-4 mt-auto">
-                    <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Price</span>
-                      <span className="text-3xl font-bold text-primary">${selectedBook.price}</span>
+
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-col shrink-0">
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">
+                        Price
+                      </span>
+                      <span className="text-3xl font-bold text-primary whitespace-nowrap">
+                        {selectedBook.price != null ? `$${selectedBook.price}` : "—"}
+                      </span>
                     </div>
-                    <div className="flex gap-3">
-                      <Button variant="outline" onClick={() => setSelectedBook(null)}>
+
+                    <div className="flex gap-3 shrink-0">
+                      <Button
+                        variant="outline"
+                        onClick={() => setSelectedBook(null)}
+                      >
                         Close
                       </Button>
-                      <Button className="" asChild>
-                        <Link to={'/all-books'}>
-                          See all books
-                        </Link>
+                      <Button asChild>
+                        <Link to="/all-books">See all books</Link>
                       </Button>
                     </div>
                   </div>

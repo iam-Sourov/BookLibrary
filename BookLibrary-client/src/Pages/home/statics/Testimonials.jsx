@@ -31,7 +31,7 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="px-2">
-      <div className="relative p-8 md:p-12 w-full overflow-hidden rounded-3xl bg-card/45 backdrop-blur-xl border border-border/80 text-foreground shadow-2xl">
+      <div className="relative p-8 md:p-12 w-full overflow-hidden rounded-3xl bg-card/45 backdrop-blur-xl border border-border/80 text-foreground">
         <div className="absolute -top-32 -left-32 h-80 w-80 rounded-full bg-primary/10 blur-[100px] pointer-events-none" />
         <div className="absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-accent/10 blur-[100px] pointer-events-none" />
         
