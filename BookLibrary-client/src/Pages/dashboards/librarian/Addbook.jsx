@@ -36,7 +36,6 @@ const AddBook = () => {
         control,
         reset,
         setValue,
-        watch,
         formState: { errors, isSubmitting }
     } = useForm({
         defaultValues: {

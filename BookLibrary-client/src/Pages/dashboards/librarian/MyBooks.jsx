@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import {
     Loader2,
     Pencil,
@@ -40,11 +40,11 @@ const MyBooks = () => {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
 
-    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm({
+    const { register, handleSubmit, reset, control } = useForm({
         defaultValues: { title: '', price: '', image: '' }
     });
 
-    const watchedImage = watch('image');
+    const watchedImage = useWatch({ control, name: 'image' });
     const { data: books = [], isLoading } = useQuery({
         queryKey: ['my-books', user?.email],
         enabled: !!user?.email,

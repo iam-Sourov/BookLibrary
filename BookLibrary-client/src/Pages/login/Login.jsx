@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { AuthContext } from '../../contexts/AuthContext';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Login = () => {
   const { LogIn, GoogleLogin } = useContext(AuthContext);
@@ -20,7 +19,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const axios = useAxiosSecure();
 
   const onLogin = async ({ email, password }) => {
     setIsLoading(true);
