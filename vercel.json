@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "BookLibrary-server/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "BookLibrary-client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "BookLibrary-server/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "BookLibrary-client/$1"
+    }
+  ]
+}
