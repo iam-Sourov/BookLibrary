@@ -5,7 +5,10 @@
   "scripts": {
     "dev:client": "npm run dev --prefix BookLibrary-client",
     "dev:server": "npm run start:dev --prefix BookLibrary-server",
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "build:client": "npm run build --prefix BookLibrary-client",
+    "build": "npm run build:client",
+    "lint": "npm run lint --prefix BookLibrary-client"
   },
   "dependencies": {
     "concurrently": "^8.2.2"

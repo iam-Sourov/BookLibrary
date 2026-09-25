@@ -9,15 +9,23 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.use(express.json());
 
+const allowedOrigins = [
+  process.env.SITE_DOMAIN,
+  process.env.FRONTEND_ORIGIN,
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175',
+  'http://localhost:5176'
+].filter(Boolean);
+
 const corsOptions = {
-  origin: [
-    process.env.SITE_DOMAIN,
-    process.env.FRONTEND_ORIGIN,
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:5175',
-    'http://localhost:5176'
-  ],
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -681,9 +689,31 @@ app.get('/', (req, res) => {
   res.send("Hello from Server");
 });
 
-// Initialize database schema and start server
-initDb().then(() => {
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-  });
+// Initialize database schema and export app / start server
+let dbInitialized = false;
+const ensureDb = async () => {
+  if (!dbInitialized) {
+    await initDb();
+    dbInitialized = true;
+  }
+};
+
+app.use(async (req, res, next) => {
+  try {
+    await ensureDb();
+    next();
+  } catch (err) {
+    console.error("DB Init Error:", err);
+    next(err);
+  }
 });
+
+if (require.main === module) {
+  ensureDb().then(() => {
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  });
+}
+
+module.exports = app;

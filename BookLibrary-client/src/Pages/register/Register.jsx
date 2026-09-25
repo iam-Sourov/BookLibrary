@@ -86,7 +86,7 @@ const Register = () => {
 
       if (res?.data?.insertedId) {
         toast.success("Registration Successful!");
-        navigate("/");
+        navigate(from, { replace: true });
       } else {
         toast.success("Account created, please login.");
         navigate("/login");
