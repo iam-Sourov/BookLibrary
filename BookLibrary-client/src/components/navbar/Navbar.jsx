@@ -28,27 +28,27 @@ import {
     UserPlus
 } from 'lucide-react';
 
+const MobileLink = ({ to, icon: Icon, children, onClick }) => (
+    <NavLink
+        to={to}
+        onClick={onClick}
+        className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-md transition-all ${isActive
+                ? "bg-primary/10 text-primary font-semibold"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            }`
+        }>
+        {Icon && <Icon className="h-4 w-4" />}
+        {children}
+    </NavLink>
+);
+
 const Navbar = () => {
     const { user, LogOut: navLogOut } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const getLinkClass = ({ isActive }) =>
         `text-sm font-medium transition-colors hover:text-primary ${isActive ? "text-primary font-bold" : "text-muted-foreground"
         }`;
-
-    const MobileLink = ({ to, icon: Icon, children }) => (
-        <NavLink
-            to={to}
-            onClick={() => setIsOpen(false)}
-            className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-md transition-all ${isActive
-                    ? "bg-primary/10 text-primary font-semibold"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`
-            }>
-            <Icon className="h-4 w-4" />
-            {children}
-        </NavLink>
-    );
 
     const handleSignOut = () => {
         navLogOut()
@@ -133,14 +133,14 @@ const Navbar = () => {
                                 </SheetHeader>
                                 <div className="flex flex-col gap-1">
                                     <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 pl-3">Menu</div>
-                                    <MobileLink to="/" icon={Home}>Home</MobileLink>
-                                    <MobileLink to="/all-books" icon={Book}>All Books</MobileLink>
+                                    <MobileLink to="/" icon={Home} onClick={() => setIsOpen(false)}>Home</MobileLink>
+                                    <MobileLink to="/all-books" icon={Book} onClick={() => setIsOpen(false)}>All Books</MobileLink>
 
                                     {user && (
                                         <>
                                             <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-4 mb-2 pl-3">Account</div>
-                                            <MobileLink to="/dashboard" icon={LayoutDashboard}>Dashboard</MobileLink>
-                                            <MobileLink to="/dashboard/my-profile" icon={User}>My Profile</MobileLink>
+                                            <MobileLink to="/dashboard" icon={LayoutDashboard} onClick={() => setIsOpen(false)}>Dashboard</MobileLink>
+                                            <MobileLink to="/dashboard/my-profile" icon={User} onClick={() => setIsOpen(false)}>My Profile</MobileLink>
                                         </>
                                     )}
                                 </div>
