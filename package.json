@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev:client": "npm run dev --prefix BookLibrary-client",
-    "dev:server": "npm run start:dev --prefix BookLibrary-server",
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
+    "dev:client": "node init && npm run dev --prefix BookLibrary-client",
+    "dev:server": "node init && npm run start:dev --prefix BookLibrary-server",
+    "dev": "node init && concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "build:client": "node init && npm run build --prefix BookLibrary-client",
+    "build": "node init && npm run build:client",
+    "lint": "npm run lint --prefix BookLibrary-client"
   },
   "dependencies": {
     "concurrently": "^8.2.2"

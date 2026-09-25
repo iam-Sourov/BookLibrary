@@ -12,28 +12,26 @@ const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
 
-  const [status, setStatus] = useState('loading');
+  const [status, setStatus] = useState(() => (sessionId ? 'loading' : 'error'));
 
   useEffect(() => {
-    if (sessionId) {
-      axiosSecure.patch(`/payment-success?session_id=${sessionId}`)
-        .then(res => {
-          console.log(res.data)
-          setStatus('success');
-          confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#10b981', '#3b82f6', '#f59e0b']
-          });
-        })
-        .catch(err => {
-          console.error(err);
-          setStatus('error');
+    if (!sessionId) return;
+
+    axiosSecure.patch(`/payment-success?session_id=${sessionId}`)
+      .then(res => {
+        console.log(res.data);
+        setStatus('success');
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#10b981', '#3b82f6', '#f59e0b']
         });
-    } else {
-      setStatus('error');
-    }
+      })
+      .catch(err => {
+        console.error(err);
+        setStatus('error');
+      });
   }, [sessionId, axiosSecure]);
 
   if (status === 'loading') {
